@@ -2,20 +2,20 @@
 <html>
   <head>
     <meta charset=UTF-8 />
-    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"> 
   </head>
   <body>
     <div class="text-box">
       <div class="heading">ExtraPlaneteers</div>
       <div class="button-wrapper">
-          <a href=./explore.html class="button">Explore</a>
-          <a href=./about.html class="button">About</a>
+          <a href=./pages/explore.html class="button">Explore</a>
+          <a href=./pages/about.html class="button">About</a>
       </div>
     </div>
 
     
-    <script src="../javascript/three.js"></script>
+    <script src="./javascript/three.js"></script>
     <script>
     let scene, camera, renderer, stars, starGeo;
 
@@ -43,7 +43,7 @@
         starGeo.vertices.push(star);
       }
 
-      let sprite = new THREE.TextureLoader().load( '../assets/star.png' );
+      let sprite = new THREE.TextureLoader().load( './assets/star.png' );
       let starMaterial = new THREE.PointsMaterial({
         color: 0xaaaaaa,
         size: 0.7,
