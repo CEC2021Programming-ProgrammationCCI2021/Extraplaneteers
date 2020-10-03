@@ -4,21 +4,37 @@
 <head>
   <title>EXTRAPLANETEERS</title>
   <meta charset=UTF-8 />
-  <link rel="stylesheet" type="text/css" href="./css/index.css" />
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
   <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <div class="text-box">
-    <div class="heading">ExtraPlaneteers</div>
-    <div class="button-wrapper">
-      <a href=./pages/explore.html class="button">Explore</a>
-      <a href=./pages/about.html class="button">About Us</a>
+  <div class="topnav">
+    <ul>
+      <li><a href="../index.html">EXTRAPLANETEERS</a></li>
+      <li style="float:right"><a href="./about.html">About Us</a></li>
+      <li style="float:right"><a href="./explore.html">Explore</a></li>
+      <li style="float:right"><a class="active" href="#A7a">Zebby Kbeer</a></li>
+    </ul>
+  </div>
+
+  <div class="sample">
+    <div id="demo-container-1" class="demo">
+      <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+      <script type="noexecute" nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+      <model-viewer id="hotspot-demo" ar ar-modes="webxr" camera-controls
+        src="../assets/roboticArm/roboticArmAnimated.gltf" style="--poster-color:#ffffff00;"
+        alt="A 3D model of an astronaut.">
+      </model-viewer>
+    </div>
+    <div class="content">
+      <div class="wrapper">
+      </div>
     </div>
   </div>
 
-  <script src="./javascript/three.js"></script>
+  <script src="../javascript/three.js"></script>
   <script>
     let scene, camera, renderer, stars, starGeo;
 
@@ -46,7 +62,7 @@
         starGeo.vertices.push(star);
       }
 
-      let sprite = new THREE.TextureLoader().load('./assets/images/star.png');
+      let sprite = new THREE.TextureLoader().load('../assets/images/star.png');
       let starMaterial = new THREE.PointsMaterial({
         color: 0xaaaaaa,
         size: 0.7,

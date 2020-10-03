@@ -1,24 +1,84 @@
-
 body {
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: url("../assets/starsBackground.jpg");
+  background: black;
+  overflow: hidden;
+}
+canvas {
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: -1;
+}
+
+
+/*Model Viwer*/
+
+.sample {
+  display: grid;
+  margin: 5%;
+  position: relative;
+  background: none;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "content demo";
+
+}
+
+.demo {
+  grid-area: demo;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex: 1;
+  display: flex;
   justify-content: center;
+  box-sizing: border-box;
 }
 
-.slide-wrap {
-  margin: auto;
-  width: 90%;
-  align-items: center;
+.demo model-viewer {
+  width: 100%;
+  height: 100%;
+  background-color: none;
 }
 
-.slider {
-
+.content {
+  max-width: unset;
+  padding-top: 16px;
+  grid-area: content;
+  position: relative;
+  padding-top: 20px;
 }
-.slide {
-  margin: auto;
-  height:80%;
+
+.wrapper {
+  margin: 0px auto;
+  padding: 40px 60px;
+  position: relative;
+  max-width: 920px;
 }
 
+/*Top Navigation*/
+.topnav>ul {
+  z-index: 1;
+  position: absolute;
+  top:0;
+  right: 0;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.topnav>ul>li {
+  float: left;
+}
+
+.topnav>ul>li>a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}

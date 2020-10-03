@@ -22,12 +22,23 @@
    font-family: 'Rubik', sans-serif;
    font-size: 16px;
    line-height: 24px;
-   color: rgba(0,0,0,.87);
+   color: white;
    margin: 0;
    padding: 0;
    font-weight: 400;
    -webkit-font-smoothing: antialiased;
+   overflow-x: hidden;
  }
+
+ canvas {
+  position: fixed;
+  top:0%;
+  bottom: 0%;
+  left:0%;
+  right: 0%;
+  z-index: -1;
+}
+
  * {
    box-sizing: border-box;
  }
@@ -39,14 +50,7 @@
  b {
    font-weight: 500;
  }
- #button-github {
-   background-color: white;
-   border-radius: 100%;
-   position: fixed;
-   right: 12px;
-   top: 12px;
-   z-index: 1000;
- }
+
  #sticky-shortcut {
    padding: 0 20px;
    margin-top: -60px;
@@ -103,7 +107,7 @@
    align-items: center;
  }
  table.browser-support th {
-   color: rgba(0,0,0,.54);
+   color: white;
  }
  table.browser-support td {
    font-weight: 500;
@@ -118,64 +122,14 @@
    margin-bottom: 4px;
    margin-top: var(--browser-support-desc-margin-top);
  }
- 
- #browser-support-icon-group {
-   margin-top: var(--browser-support-icons-margin-top);
- }
+
  .zero-interaction {
    pointer-events: none !important;
  }
- .icon-desc {
-   padding: 8px 0;
-   width: 50%;
-   min-width: 240px;
-   float: left;
- }
- .icon-desc > * {
-   margin-right: 16px;
-   display: inline-block;
-   vertical-align: middle;
- }
+
  .size-24 {
    width: 24px;
    height: 24px;
- }
- .logo-chrome {
-   content: url("https://github.com/alrra/browser-logos/raw/master/src/chrome/chrome_48x48.png");
- }
- .logo-canary {
-   content: url("https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome-canary/chrome-canary_48x48.png");
- }
- .logo-safari {
-   content: url("https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png");
- }
- .logo-firefox {
-   content: url("https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png");
- }
- .logo-edge {
-   content: url("https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png");
- }
- .logo-ie {
-   content: url("https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png");
- }
- .logo-samsung {
-   content: url("https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png");
- }
- .icon-check {
-   opacity: .6;
-   content: url("https://www.gstatic.com/images/icons/material/system/2x/done_black_24dp.png");
- }
- .icon-warning {
-   opacity: .6;
-   content: url("https://www.gstatic.com/images/icons/material/system/2x/assignment_turned_in_black_24dp.png");
- }
- .icon-na {
-   opacity: .6;
-   content: url("https://www.gstatic.com/images/icons/material/system/2x/not_interested_black_24dp.png");
- }
- .icon-flag {
-   opacity: .5;
-   content: url("https://www.gstatic.com/images/icons/material/system/2x/flag_black_24dp.png");
  }
  
  h1, h2, h3, h4 {
@@ -188,6 +142,7 @@
    line-height: 1.24em;
    margin-bottom: .12em;
    margin-top: 0;
+   padding-top: 50px;
  }
  h2 {
    font-size: 1.72em;
@@ -255,7 +210,7 @@
  .sample {
    display: grid;
    position: relative;
-   background: white;
+   background: none;
    grid-template-columns: 50% 50%;
    grid-template-areas: "content demo";
  }
@@ -280,7 +235,7 @@
    padding: var(--demo-title-padding);
  }
  .demo-title:before {
-   background: #222;
+   background: none;
    height: 2px;
    width: 40px;
    content: "";
@@ -308,10 +263,10 @@
    right: 0;
    z-index: 1000;
    margin: 16px;
-   background-color: rgba(0,0,0,.5);
+   background-color: none;
  }
  .content pre {
-   background-color: rgba(0,0,0,.04);
+   background-color: none;
  }
  
  pre,
@@ -348,7 +303,7 @@
    display: flex;
    align-items: center;
    margin-bottom: 6px;
-   color: rgba(0,0,0,.87);
+   color: white;
  }
  .lockup h1 {
    margin: 0;
@@ -378,7 +333,7 @@
  .demo model-viewer {
    width: 100%;
    height: 100%;
-   background-color: #eee;
+   background-color: none;
  }
  .content {
    grid-area: content;
@@ -422,7 +377,7 @@
  .modal {
    margin: 0px auto;
    max-width: 520px;
-   background: white;
+   background: blue;
    padding: 28px 32px 24px 32px;
  }
  
@@ -503,7 +458,7 @@
    margin-top: var(--grouping-title-margin-top);
    position: sticky;
    top: 0;
-   background: white;
+   background: black;
    padding: 14px 0 12px 0;
    border-bottom: var(--border-style);
    z-index: 100;
@@ -666,7 +621,7 @@
      position: relative;
      height: 76vh;
      flex-direction: column-reverse;
-     background-color: #455A64;
+     background-color: none;
    }
    .index {
      width: 48px;
@@ -704,4 +659,27 @@
        max-width: 50vw;
    }
  }
- 
+
+ .topnav>ul {
+  z-index: 1;
+  position: absolute;
+  top:0;
+  right: 0;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.topnav>ul>li {
+  float: left;
+}
+
+.topnav>ul>li>a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
