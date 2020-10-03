@@ -1,72 +1,136 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>EXTRAPLANETEERS</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no">
-    <meta name="description" content="">
-    <link rel="stylesheet" href="../css/explore.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+  <title>Explore | EXTRAPLANETEERS</title>
+  <meta charset=UTF-8 />
+  <link rel="stylesheet" type="text/css" href="../css/explore.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  <br><br>
 
-    <section id="slider" class="section">
+  <div class="topnav">
+    <ul>
+      <li><a href="../index.html">EXTRAPLANETEERS</a></li>
+      <li style="float:right"><a href="./about.html">About Us</a></li>
+      <li style="float:right"><a href="./explore.html">Explore</a></li>
+      <li style="float:right"><a class="active" href="#A7a">Zebby Kbeer</a></li>
+    </ul>
+  </div>
 
-        <div class="slider">
-            <div class="slider__container">
+  <div class="slide hi-slide">
+    <div class="hi-prev "></div>
+    <div class="hi-next "></div>
+    <ul>
 
-                <div class="slider__item slide-burger">
-                    <div class="slider__content grid">
-                        <div class="column">
-                            <h1 class="title">Small Scoop</h1>
-                            <h1 class="title">Artemis Program</h1>
-                        </div>
-                        <a href=./scoop.html class="column"><img src="../assets/Small_Scoop/scoop_small.png"
-                                class="image burger"></a>
-                    </div>
-                </div>
+      <li>
+        <a href=./bigScoop.html><img src="../assets/bigScoop/scoopBig.png" alt="Img 1"></a>
+      </li>
 
-                <div class="slider__item slide-astronaut">
-                    <div class="slider__content grid">
-                        <div class="column">
-                            <h1 class="title">lost</h1>
-                            <h1 class="title">in space</h1>
-                        </div>
-                        <a href=./scoop.html class="column"><img src="../assets/images/astronaut.png"
-                                class="image astronaut"></a>
-                    </div>
-                </div>
+      <li>
+        <a href=./smallScoop.html><img src="../assets/smallScoop/scoopSmall.png" alt="Img 2"></a>
+      </li>
 
-                <div class="slider__item slide-coffee">
-                    <div class="slider__content grid">
-                        <div class="column">
-                            <h1 class="title">I Love</h1>
-                            <h1 class="title">Coffee</h1>
-                        </div>
-                        <a href=./scoop.html class="column"><img src="../assets/images/cup-2.png" class="image cup"></a>
-                    </div>
-                </div>
+      <li>
+        <a href=./bigScoop.html><img src="../assets/bigScoop/scoopBig.png" alt="Img 3"></a>
+      </li>
 
-                <div class="slider__item slide-coffee">
-                    <div class="slider__content grid">
-                        <div class="column">
-                            <h1 class="title">I Love</h1>
-                            <h1 class="title">Coffee</h1>
-                        </div>
-                        <a href=./scoop.html class="column"><img src="../assets/images/cup-2.png" class="image cup"></a>
-                    </div>
-                </div>
+      <li>
+        <a href=./smallScoop.html><img src="../assets/smallScoop/scoopSmall.png" alt="Img 4"></a>
+      </li>
 
-            </div>
-        </div>
+      <li>
+        <a href=./bigScoop.html><img src="../assets/bigScoop/scoopBig.png" alt="Img 5"></a>
+      </li>
 
-    </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-    <script src="../javascript/script.min.js"></script>
+      <li>
+        <a href=./smallScoop.html><img src="../assets/smallScoop/scoopSmall.png" alt="Img 6"></a>
+      </li>
 
+      <li>
+        <a href=./bigScoop.html><img src="../assets/bigScoop/scoopBig.png" alt="Img 7"></a>
+      </li>
 
+      <li>
+        <a href=./smallScoop.html><img src="../assets/smallScoop/scoopSmall.png" alt="Img 8"></a>
+      </li>
+
+    </ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="../javascript/three.js"></script>
+  <script type="text/javascript" src="../javascript/jquery.hislide.js"></script>
+  <script>
+    $('.slide').hiSlide();
+  </script>
+  <script>
+    let scene, camera, renderer, stars, starGeo;
+
+    function init() {
+
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+      camera.position.z = 1;
+      camera.rotation.x = Math.PI / 2;
+
+      renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      starGeo = new THREE.Geometry();
+      for (let i = 0; i < 6000; i++) {
+        star = new THREE.Vector3(
+          Math.random() * 600 - 300,
+          Math.random() * 600 - 300,
+          Math.random() * 600 - 300
+        );
+        star.velocity = 0;
+        star.acceleration = 0.02;
+        starGeo.vertices.push(star);
+      }
+
+      let sprite = new THREE.TextureLoader().load('../assets/images/star.png');
+      let starMaterial = new THREE.PointsMaterial({
+        color: 0xaaaaaa,
+        size: 0.7,
+        map: sprite
+      });
+
+      stars = new THREE.Points(starGeo, starMaterial);
+      scene.add(stars);
+
+      window.addEventListener("resize", onWindowResize, false);
+
+      animate();
+    }
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    function animate() {
+      starGeo.vertices.forEach(p => {
+        p.velocity += p.acceleration
+        p.y -= p.velocity;
+
+        if (p.y < -200) {
+          p.y = 200;
+          p.velocity = 0;
+        }
+      });
+      starGeo.verticesNeedUpdate = true;
+      stars.rotation.y += 0.002;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    init();
+
+  </script>
 </body>
 
 </html>
