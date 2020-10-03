@@ -1,6 +1,40 @@
+
 body {
   width: 100vw;
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  background-image: url("../assets/starsBackground.jpg");
+}
+
+.slide-wrap {
+  width: 100vh;
+  height: 100vh;
+}
+
+.slider {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  overflow-x: auto;
+  align-items: center;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.slide {
+  width: 80vh;
+  height: 80vh;
+  flex-shrink: 0;
+  object-fit: fill;
+}
+
+.slides > div {
+  /* CURRENT way. */
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+}
+
+.slides > div:target {
+  transform: scale(0.8);
 }
