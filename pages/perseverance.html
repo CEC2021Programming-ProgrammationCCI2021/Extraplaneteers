@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Hammer | EXTRAPLANETEERS</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Easily display interactive 3D models on the web and in AR">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" href="../css/models.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="../assets/favicon.png" />
+</head>
+
+<body>
+
+  <div class="sample">
+
+    <div class="topnav">
+      <ul>
+        <li><a href="../index.html">EXTRAPLANETEERS</a></li>
+        <li style="float:right"><a href="./about.html">About Us</a></li>
+        <li style="float:right"><a href="./explore.html">Explore</a></li>
+      </ul>
+    </div>
+
+    <div id="demo-container" class="demo">
+      <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+      <script type="noexecute" nomodule
+        src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+      <model-viewer src="../assets/perseverance/GLB/Perseverance.glb" alt="A 3D model of an astronaut" autoplay
+        auto-rotate="" camera-controls="" camera-orbit="305deg 75deg 60m" data-js-focus-visible="" ar-status="not-presenting"></model-viewer>
+    </div>
+
+    <div class="content">
+      <div class="wrapper">
+        <div class="heading">
+          <div class="lockup zero-interaction">
+            <div class="icon-button icon-modelviewer-black"></div>
+            <h1>LIGHT AND HEAVY WEIGHT HAMMER</h1>
+          </div>
+          <h3 style="font-we-ight:400;">Mars 2020 Perseverance Rover Mission</h3>
+        </div>
+
+        <div id="Description">
+          <h3 class="grouping-title">Description</h3>
+          <p>
+            The Mars 2020 Perseverance Rover will search for signs of ancient microbial life,
+             which will advance NASA's quest to explore the past habitability of Mars. 
+             The rover has a drill to collect core samples of Martian rock and soil, then store them in sealed 
+             tubes for pickup by a future mission that would ferry them back to Earth for detailed analysis.
+             Perseverance will also test technologies to help pave the way for future human exploration of Mars.
+          </p>
+        </div>
+
+        <div id="Physical Attributes">
+          <h3 class="grouping-title">Physical Attributes</h3>
+          <ul class="list-attribute">
+
+            <li>
+              <div>Weight</div>
+              <p>1,025 kilograms</p>
+            </li>
+
+            <li>
+              <div>Dimensions</div>
+              <p> 
+                3 meters long
+                <br>2.7 meters wide
+                <br> 2.2 meters tall
+              </p>
+            </li>
+
+            <li>
+              <div>Materials</div>
+              <p>
+                Multiple - Please Check References
+              </p>
+            </li>
+
+            <li>
+              <div>Manufacturer</div>
+              <p>
+                NASA, Jet Propulsion Laboratory
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div id="Images">
+          <h3 class="grouping-title">Images</h3>
+          <ul class="list-attribute">
+
+            <li>
+              <div>
+                <img src="../assets/nasaPhotos/rover1.jpg" alt="Img 1">
+                <figcaption>Perseverance Twin Drives Into the Mars Yard<br>(NASA/JPL-Caltech)</figcaption>
+              </div>
+            </li>
+
+            <li>
+              <div>
+                <img src="../assets/nasaPhotos/rover2.jpg" alt="Img 2">
+                <figcaption>Perseverance in Progress<br>(NASA/Kim Shiflett)</figcaption>
+              </div>
+            </li>
+
+            <li>
+              <div>
+                <img src="../assets/nasaPhotos/rover3.jpg" alt="Img 3">
+                <figcaption>Mars 2020 Collecting Sample (Artist's Concept)<br>(NASA/JPL-Caltech)</figcaption>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div id="References">
+          <h3 class="grouping-title">References</h3>
+          <p> 
+            <a href=https://nasa3d.arc.nasa.gov/detail/perseverance-glb>
+            • NASA 3D Resources
+          </a> 
+          <a href=https://mars.nasa.gov/mars2020>
+            • Mars 2020 Perseverance Rover Mission
+            </a> 
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <ul>
+      <li class="attribution"> 3D Model by 
+        <a href="https://www.linkedin.com/in/MohannadAbdelall">Mohannad Abdelall</a>
+      </li>
+    </ul>
+    <div class="copyright">©Copyright 2020 
+      <a href="https://github.com/ahmadkammonah/extraplaneteers">EXTRAPLANETEERS</a> 
+      Licensed under the MIT License
+    </div>
+  </div>
+
+  <script src="../javascript/three.js"></script>
+  <script>
+    let scene, camera, renderer, stars, starGeo;
+
+    function init() {
+
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+      camera.position.z = 1;
+      camera.rotation.x = Math.PI / 2;
+
+      renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      starGeo = new THREE.Geometry();
+      for (let i = 0; i < 6000; i++) {
+        star = new THREE.Vector3(
+          Math.random() * 600 - 300,
+          Math.random() * 600 - 300,
+          Math.random() * 600 - 300
+        );
+        star.velocity = 0;
+        star.acceleration = 0.02;
+        starGeo.vertices.push(star);
+      }
+
+      let sprite = new THREE.TextureLoader().load('../assets/images/star.png');
+      let starMaterial = new THREE.PointsMaterial({
+        color: 0xaaaaaa,
+        size: 0.7,
+        map: sprite
+      });
+
+      stars = new THREE.Points(starGeo, starMaterial);
+      scene.add(stars);
+
+      window.addEventListener("resize", onWindowResize, false);
+
+      animate();
+    }
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    function animate() {
+      starGeo.vertices.forEach(p => {
+        p.velocity += p.acceleration
+        p.y -= p.velocity;
+
+        if (p.y < -200) {
+          p.y = 200;
+          p.velocity = 0;
+        }
+      });
+      starGeo.verticesNeedUpdate = true;
+      stars.rotation.y += 0.002;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    init();
+
+  </script>
+
+
+</body>
+
+</html>
