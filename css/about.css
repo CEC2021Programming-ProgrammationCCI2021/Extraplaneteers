@@ -1,15 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik:400,500');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500');
-
 :root {
-  --color-red: #ff5252;
+  --color-red: #00b0ff;
   --font-monospace: 'Roboto Mono', monospace;
   --border-style: 1px solid rgba(0,0,0,.15);
   --grouping-title-margin-top: 40px;
   --snippet-offset: 20px -20px;
   --pre-padding: 16px 20px;
   --demo-title-padding: 24px 10% 24px 0;
-  --heading-h3-max-width: 480px;
   --heading-h1-margin-top: 40px;
   --browser-support-desc-margin-top: 40px;
   --browser-support-icons-margin-top: 16px;
@@ -117,7 +113,6 @@ table.browser-support img {
   height: 24px;
 }
 .browser-support-desc {
-  max-width: 420px;
   position: relative;
   margin-bottom: 4px;
   margin-top: var(--browser-support-desc-margin-top);
@@ -136,7 +131,7 @@ h1, h2, h3, h4 {
   font-weight: 400;
 }
 h1 {
-  /* font-weight: 500; */
+  font-weight: 500;
   white-space: nowrap;
   font-size: 1.92em;
   line-height: 1.24em;
@@ -151,6 +146,7 @@ h2 {
   margin-bottom: .12em;
 }
 h3 {
+  color: red;
   font-size: 1.4em;
   line-height: 1.34em;
   margin-top: .12em;
@@ -166,14 +162,10 @@ h1 span {
   display: inline-block;
   transform:translate3d(0,3px,0);
 }
-.content example-snippet {
-  display: block;
-  margin: var(--snippet-offset);
-}
 
 .footer {
   background: #eee;
-  padding: 40px 40px 40px 40px;
+  padding: 20px 40px;
   color: rgba(0,0,0,.54);
 }
 .footer ul {
@@ -186,13 +178,9 @@ h1 span {
   font-weight: 500;
 }
 p {
+  text-align: center;
   margin-top: .25em;
   margin-bottom: .25em;
-  max-width: 680px;
-}
-
-model-viewer:focus {
-  outline: none;
 }
 
 #intro {
@@ -208,22 +196,18 @@ model-viewer:focus {
 }
 
 .sample {
-  display: grid;
   position: relative;
   background: none;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "content demo";
+  margin-bottom: 3%;
 }
 .sample {
   border-bottom: var(--border-style);
 }
 
-
 .sample pre {
   font-size: 1em;
   line-height: 1.6em;
   padding: var(--pre-padding);
-  max-width: 960px;
   margin-left: auto;
   margin-right: auto;
   overflow-x: auto;
@@ -256,12 +240,6 @@ code {
 .icon-github {
   background-image: url(../assets/ic_github_black_24dp.svg);
 }
-.icon-modelviewer {
-  background-image: url(../assets/ic_modelviewer_red.svg);
-}
-.icon-modelviewer-black {
-  background-image: url(../assets/ic_modelviewer.svg);
-}
 
 .lockup {
   display: flex;
@@ -288,23 +266,22 @@ code {
   display: flex;
   align-items: center;
 }
-#button-home .icon-modelviewer {
+#button-home {
   margin-right: 6px;
   margin-left: -6px;
   margin-top: 2px;
 }
 
+
 .content {
+  text-align: center;
   grid-area: content;
   position: relative;
-  padding-top: 20px;
+  padding: 0% 20%;
 }
 
 .wrapper {
-  margin: 0px auto;
-  padding: 40px 60px;
   position: relative;
-  max-width: ;
 }
 
 #header {
@@ -326,16 +303,15 @@ code {
   margin-right: auto;
 }
 .heading {
-  max-width: 760px;
+  text-align: center;
 }
 .heading h3 {
-  max-width: var(--heading-h3-max-width);
+  text-align: center;
 }
 
 
 .modal {
   margin: 0px auto;
-  max-width: 520px;
   background: blue;
   padding: 28px 32px 24px 32px;
 }
@@ -397,8 +373,18 @@ paper-button {
 }
 .list-attribute li > p,
 .list-attribute li > span {
+
   flex: 2;
   margin: 0;
+}
+
+img{
+ width: 100%;
+ height: auto;
+}
+
+figcaption{
+ text-align: center;
 }
 
 .grid {
@@ -408,12 +394,9 @@ paper-button {
   grid-gap: 0;
   grid-template: 1fr 1fr / 1fr 1fr;
 }
-.grid model-viewer {
-  width: 100%;
-  height: 100%;
-}
 
 .grouping-title {
+  color: red;
   margin-top: var(--grouping-title-margin-top);
   position: sticky;
   top: 0;
@@ -421,7 +404,6 @@ paper-button {
   padding: 14px 0 12px 0;
   border-bottom: var(--border-style);
   z-index: 100;
-  text-transform: lowercase;
 }
 .grouping-title.border-bottom {
   padding-bottom: 10px;
@@ -482,9 +464,6 @@ paper-button {
   body {
     font-size: 18px;
     line-height: 26px;
-  }
-  .demo pre {
-    margin: 16px auto;
   }
     .eg-image {
         max-width: 20vw;
@@ -562,26 +541,17 @@ paper-button {
     margin-bottom: 20px;
   }
 
-  body.single-example .demo-title {
+  body.single-example {
     transform: translate3d(0,-36px,0);
-  }
-
-  .demo-title + h4 {
-    margin-bottom: 20px;
   }
 
   .grouping-title {
     font-weight: 500;
   }
   .wrapper {
-    padding: 0 0 20px 0;
+    padding: 0 20px;
   }
-  .demo {
-    position: relative;
-    height: 76vh;
-    flex-direction: column-reverse;
-    background-color: none;
-  }
+
   .index {
     width: 48px;
     height: 48px;
